@@ -35,7 +35,7 @@ import java.util.Map;
 /**
  * Represents a response object for HTTP.
  * 
- * @author Chandan R. Rupakheti (rupakhet@rose-hulman.edu)
+ * @author Zac Reynolds and Dale Pedzinski (reynolza@rose-hulman.edu & pedzindm@rose-hulman.edu)
  */
 public class HttpResponse {
 	private String version;
