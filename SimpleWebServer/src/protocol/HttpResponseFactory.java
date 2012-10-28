@@ -131,7 +131,8 @@ public class HttpResponseFactory {
 	 * @return A {@link HttpResponse} object represent 505 status.
 	 */
 	public static HttpResponse create505NotSupported(String connection) {
-		// TODO fill in this method
+		HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.NOT_SUPPORTED_CODE, 
+				Protocol.NOT_SUPPORTED_TEXT, new HashMap<String, String>(), null);
 		return null;
 	}
 	
