@@ -93,7 +93,9 @@ public class HttpClient extends javax.swing.JFrame {
         butConnect.setText("Connect");
         butConnect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butConnectActionPerformed(evt);
+            	while(true){
+            		butConnectActionPerformed(evt);
+            	}
             }
         });
 
