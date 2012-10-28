@@ -133,7 +133,11 @@ public class HttpResponseFactory {
 	public static HttpResponse create505NotSupported(String connection) {
 		HttpResponse response = new HttpResponse(Protocol.VERSION, Protocol.NOT_SUPPORTED_CODE, 
 				Protocol.NOT_SUPPORTED_TEXT, new HashMap<String, String>(), null);
-		return null;
+
+		// Lets fill up the header fields with more information
+		fillGeneralHeader(response, connection);
+		
+		return response;	
 	}
 	
 	/**
