@@ -130,8 +130,7 @@ public class Server implements Runnable {
 				if(this.connections<= 200){
 				// Create a handler for this incoming connection and start the handler in a new thread
 				ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
-			 handler.
-				new thread(handler).start();
+				new Thread(handler).start();
 				}
 			}
 			this.welcomeSocket.close();
