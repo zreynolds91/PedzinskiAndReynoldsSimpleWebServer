@@ -157,7 +157,7 @@ public class Server implements Runnable {
 				// Come out of the loop if the stop flag is set
 				if(this.stop)
 					break;
-				if(this.connections<= 200 || !connectionSocket.getKeepAlive()){
+			
 				// Create a handler for this incoming connection and start the handler in a new thread
 				ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
 				threadhandler.execute(handler);
@@ -166,7 +166,7 @@ public class Server implements Runnable {
 				//logger.write("Executor has "+ threadhandler.getCompletedTaskCount()+"completed threads");
 				//logger.write("Executor's Queue is this big "+ threadhandler.getQueue().size());
 				
-				}
+				
 			}
 			this.welcomeSocket.close();
 		}
