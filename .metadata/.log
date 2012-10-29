@@ -10,3 +10,6 @@ Command-line arguments:  -data C:\Users\reynolza\Documents\GitHub\PedzinskiAndRe
 
 !ENTRY com.android.ide.eclipse.ddms 4 0 2012-10-28 20:07:02.443
 !MESSAGE DDMS files not found: C:\Users\reynolza\Desktop\eclipse\platform-tools\adb.exe C:\Users\reynolza\Desktop\eclipse\tools\hprof-conv.exe C:\Users\reynolza\Desktop\eclipse\tools\traceview.bat 
+
+!ENTRY org.eclipse.ui 4 4 2012-10-29 00:41:33.592
+!MESSAGE Invalid preference page path: XML Syntax

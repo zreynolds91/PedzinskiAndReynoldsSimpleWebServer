@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.Date;
 import java.util.Map;
 
 import protocol.HttpRequest;
@@ -114,8 +115,6 @@ public class ConnectionHandler implements Runnable {
 			response = HttpResponseFactory.create400BadRequest(Protocol.CLOSE);
 		}
 		
-		//if(request.getModifiedTime())
-		
 		if(response != null) {
 			// Means there was an error, now write the response object to the socket
 			try {
@@ -144,6 +143,7 @@ public class ConnectionHandler implements Runnable {
 				// Here you checked that the "Protocol.VERSION" string is not equal to the  
 				// "request.version" string ignoring the case of the letters in both strings
 				// TODO: Fill in the rest of the code here
+				response = HttpResponseFactory.create505NotSupported(Protocol.CLOSE);
 			}
 			else if(request.getMethod().equalsIgnoreCase(Protocol.GET)) {
 //				Map<String, String> header = request.getHeader();
@@ -164,8 +164,14 @@ public class ConnectionHandler implements Runnable {
 						String location = rootDirectory + uri + System.getProperty("file.separator") + Protocol.DEFAULT_FILE;
 						file = new File(location);
 						if(file.exists()) {
-							// Lets create 200 OK response
-							response = HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+							if(request.getModifiedTime().before(new Date(file.lastModified())))
+							{
+								response = HttpResponseFactory.create304NotModified(Protocol.CLOSE);
+							}
+							else{
+								// Lets create 200 OK response
+								response = HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+							}
 						}
 						else {
 							// File does not exist so lets create 404 file not found code
@@ -185,14 +191,6 @@ public class ConnectionHandler implements Runnable {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
-		
-
-		// TODO: So far response could be null for protocol version mismatch.
-		// So this is a temporary patch for that problem and should be removed
-		// after a response object is created for protocol version mismatch.
-		if(response == null) {
-			response = HttpResponseFactory.create400BadRequest(Protocol.CLOSE);
 		}
 		
 		try{
