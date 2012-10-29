@@ -25,3 +25,12 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.android.ide.eclipse.ddms 4 0 2012-10-29 02:12:42.727
 !MESSAGE DDMS files not found: C:\Users\reynolza\Desktop\eclipse\platform-tools\adb.exe C:\Users\reynolza\Desktop\eclipse\tools\hprof-conv.exe C:\Users\reynolza\Desktop\eclipse\tools\traceview.bat 
+!SESSION 2012-10-29 11:05:52.311 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.7.0_07
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-10-29 11:05:54.406
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
