@@ -95,7 +95,7 @@ public class Server implements Runnable {
 	 * 
 	 * @param value
 	 */
-	public synchronized void incrementConnections(long value) {
+	protected synchronized void incrementConnections(long value) {
 		this.connections += value;
 	}
 	
@@ -105,7 +105,7 @@ public class Server implements Runnable {
 	 * 
 	 * @param value
 	 */
-	public synchronized void incrementServiceTime(long value) {
+	protected synchronized void incrementServiceTime(long value) {
 		this.serviceTime += value;
 	}
 

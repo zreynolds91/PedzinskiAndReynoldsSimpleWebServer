@@ -13,3 +13,15 @@ Command-line arguments:  -data C:\Users\reynolza\Documents\GitHub\PedzinskiAndRe
 
 !ENTRY org.eclipse.ui 4 4 2012-10-29 00:41:33.592
 !MESSAGE Invalid preference page path: XML Syntax
+!SESSION 2012-10-29 02:12:05.136 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.6.0_25
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-10-29 02:12:15.837
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.android.ide.eclipse.ddms 4 0 2012-10-29 02:12:42.727
+!MESSAGE DDMS files not found: C:\Users\reynolza\Desktop\eclipse\platform-tools\adb.exe C:\Users\reynolza\Desktop\eclipse\tools\hprof-conv.exe C:\Users\reynolza\Desktop\eclipse\tools\traceview.bat 

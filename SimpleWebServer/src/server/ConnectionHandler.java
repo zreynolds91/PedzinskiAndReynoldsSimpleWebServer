@@ -142,7 +142,6 @@ public class ConnectionHandler implements Runnable {
 			if(!request.getVersion().equalsIgnoreCase(Protocol.VERSION)) {
 				// Here you checked that the "Protocol.VERSION" string is not equal to the  
 				// "request.version" string ignoring the case of the letters in both strings
-				// TODO: Fill in the rest of the code here
 				response = HttpResponseFactory.create505NotSupported(Protocol.CLOSE);
 			}
 			else if(request.getMethod().equalsIgnoreCase(Protocol.GET)) {
@@ -179,8 +178,15 @@ public class ConnectionHandler implements Runnable {
 						}
 					}
 					else { // Its a file
-						// Lets create 200 OK response
-						response = HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+						if(request.getModifiedTime().before(new Date(file.lastModified())))
+						{
+							response = HttpResponseFactory.create304NotModified(Protocol.CLOSE);
+						}
+						else
+						{
+							// Lets create 200 OK response
+							response = HttpResponseFactory.create200OK(file, Protocol.CLOSE);
+						}
 					}
 				}
 				else {

@@ -46,7 +46,7 @@ public class SpringUtilities {
      * A debugging utility that prints to stdout the component's
      * minimum, preferred, and maximum sizes.
      */
-    public static void printSizes(Component c) {
+    protected static void printSizes(Component c) {
         System.out.println("minimumSize = " + c.getMinimumSize());
         System.out.println("preferredSize = " + c.getPreferredSize());
         System.out.println("maximumSize = " + c.getMaximumSize());
@@ -66,7 +66,7 @@ public class SpringUtilities {
      * @param xPad x padding between cells
      * @param yPad y padding between cells
      */
-    public static void makeGrid(Container parent,
+    protected static void makeGrid(Container parent,
                                 int rows, int cols,
                                 int initialX, int initialY,
                                 int xPad, int yPad) {
@@ -169,7 +169,7 @@ public class SpringUtilities {
      * @param xPad x padding between cells
      * @param yPad y padding between cells
      */
-    public static void makeCompactGrid(Container parent,
+    protected static void makeCompactGrid(Container parent,
                                        int rows, int cols,
                                        int initialX, int initialY,
                                        int xPad, int yPad) {

@@ -54,7 +54,7 @@ public class HttpResponse {
 	 * @param header The header field map.
 	 * @param file The file to be sent.
 	 */
-	public HttpResponse(String version, int status, String phrase, Map<String, String> header, File file) {
+	protected HttpResponse(String version, int status, String phrase, Map<String, String> header, File file) {
 		this.version = version;
 		this.status = status;
 		this.phrase = phrase;
@@ -67,7 +67,7 @@ public class HttpResponse {
 	 * 
 	 * @return the version
 	 */
-	public String getVersion() {
+	protected String getVersion() {
 		return version;
 	}
 
@@ -75,7 +75,7 @@ public class HttpResponse {
 	 * Gets the status code of the response object.
 	 * @return the status
 	 */
-	public int getStatus() {
+	protected int getStatus() {
 		return status;
 	}
 
@@ -84,7 +84,7 @@ public class HttpResponse {
 	 * 
 	 * @return the phrase
 	 */
-	public String getPhrase() {
+	protected String getPhrase() {
 		return phrase;
 	}
 	
@@ -93,7 +93,7 @@ public class HttpResponse {
 	 * 
 	 * @return the file
 	 */
-	public File getFile() {
+	protected File getFile() {
 		return file;
 	}
 
@@ -101,7 +101,7 @@ public class HttpResponse {
 	 * Returns the header fields associated with the response object.
 	 * @return the header
 	 */
-	public Map<String, String> getHeader() {
+	protected Map<String, String> getHeader() {
 		// Lets return the unmodifable view of the header map
 		return Collections.unmodifiableMap(header);
 	}
@@ -111,7 +111,7 @@ public class HttpResponse {
 	 * @param key A key, e.g. "Host"
 	 * @param value A value, e.g. "www.rose-hulman.edu"
 	 */
-	public void put(String key, String value) {
+	protected void put(String key, String value) {
 		this.header.put(key, value);
 	}
 	
