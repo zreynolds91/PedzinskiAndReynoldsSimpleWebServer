@@ -25,10 +25,14 @@ package protocol;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import server.GMTConversion;
 
 /**
  * Represents a request object for HTTP.
@@ -61,6 +65,16 @@ public class HttpRequest {
 	 */
 	public String getUri() {
 		return uri;
+	}
+	
+	/**
+	 * The modified-since time of the request object.
+	 * 
+	 * @return the uri
+	 * @throws ParseException 
+	 */
+	public Date getModifiedTime() throws ParseException {
+		return GMTConversion.fromGMTString(this.header.get("If-Modified-Since"));
 	}
 
 	/**
@@ -115,6 +129,10 @@ public class HttpRequest {
 		request.method = tokenizer.nextToken();		// GET
 		request.uri = tokenizer.nextToken();		// /somedir/page.html
 		request.version = tokenizer.nextToken();	// HTTP/1.1
+		
+		if(request.method != "GET") {
+			throw new ProtocolException(Protocol.NOT_SUPPORTED_CODE, Protocol.NOT_SUPPORTED_TEXT);
+		}
 		
 		// Rest of the request is a header that maps keys to values
 		// e.g. Host: www.rose-hulman.edu

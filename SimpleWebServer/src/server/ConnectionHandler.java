@@ -104,13 +104,17 @@ public class ConnectionHandler implements Runnable {
 			if(status == Protocol.BAD_REQUEST_CODE) {
 				response = HttpResponseFactory.create400BadRequest(Protocol.CLOSE);
 			}
-			// TODO: Handle version not supported code as well
+			if(status == Protocol.NOT_SUPPORTED_CODE) {
+				response = HttpResponseFactory.create505NotSupported(Protocol.CLOSE);
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			// For any other error, we will create bad request response as well
 			response = HttpResponseFactory.create400BadRequest(Protocol.CLOSE);
 		}
+		
+		//if(request.getModifiedTime())
 		
 		if(response != null) {
 			// Means there was an error, now write the response object to the socket
