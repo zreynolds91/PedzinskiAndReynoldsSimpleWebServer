@@ -26,6 +26,10 @@ import gui.WebServer;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This represents a welcoming server for the incoming
@@ -38,7 +42,8 @@ public class Server implements Runnable {
 	private int port;
 	private boolean stop;
 	private ServerSocket welcomeSocket;
-	
+	BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<Runnable>(50);
+	private ThreadPoolExecutor threadhandler = new ThreadPoolExecutor(10,200,500,TimeUnit.MILLISECONDS,blockingQueue);
 	private long connections;
 	private long serviceTime;
 	
@@ -54,6 +59,8 @@ public class Server implements Runnable {
 		this.connections = 0;
 		this.serviceTime = 0;
 		this.window = window;
+		threadhandler.prestartAllCoreThreads();
+
 	}
 
 	/**
@@ -130,7 +137,8 @@ public class Server implements Runnable {
 				if(this.connections<= 200){
 				// Create a handler for this incoming connection and start the handler in a new thread
 				ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
-				new Thread(handler).start();
+				threadhandler.execute(handler);
+				
 				}
 			}
 			this.welcomeSocket.close();
