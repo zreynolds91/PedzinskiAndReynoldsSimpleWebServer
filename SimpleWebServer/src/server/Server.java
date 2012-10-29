@@ -32,6 +32,8 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import logger.Logger;
+
 /**
  * This represents a welcoming server for the incoming
  * TCP request from a HTTP client such as a web browser. 
@@ -45,6 +47,7 @@ public class Server implements Runnable {
 	private ServerSocket welcomeSocket;
 	BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<Runnable>(50);
 	private ThreadPoolExecutor threadhandler = new ThreadPoolExecutor(50,200,5000,TimeUnit.MILLISECONDS,blockingQueue);
+	private Logger logger = new Logger();
 	private long connections;
 	private long serviceTime;
 	
@@ -67,7 +70,10 @@ public class Server implements Runnable {
 			try {
 
 			Thread.sleep(1000);
-
+			logger.write("Connection"+ r.toString()+"is blocked and is waiting to be tried again");
+			logger.write("Executor has "+ executor.getActiveCount()+"active threads");
+			logger.write("Executor has "+ executor.getCompletedTaskCount()+"completed threads");
+			logger.write("Executor's Queue is this big "+ executor.getQueue().size());
 			} catch (InterruptedException e) {
 
 			e.printStackTrace();
@@ -151,10 +157,14 @@ public class Server implements Runnable {
 				// Come out of the loop if the stop flag is set
 				if(this.stop)
 					break;
-				if(this.connections<= 200){
+				if(this.connections<= 200 || !connectionSocket.getKeepAlive()){
 				// Create a handler for this incoming connection and start the handler in a new thread
 				ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
 				threadhandler.execute(handler);
+				logger.write("Executor is currently trying to execute "+ handler.getSocket().toString());
+				//logger.write("Executor has "+ threadhandler.getActiveCount()+"active threads");
+				//logger.write("Executor has "+ threadhandler.getCompletedTaskCount()+"completed threads");
+				//logger.write("Executor's Queue is this big "+ threadhandler.getQueue().size());
 				
 				}
 			}
