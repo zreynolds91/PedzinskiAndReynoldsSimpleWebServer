@@ -43,7 +43,7 @@ public class Server implements Runnable {
 	private boolean stop;
 	private ServerSocket welcomeSocket;
 	BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<Runnable>(50);
-	private ThreadPoolExecutor threadhandler = new ThreadPoolExecutor(10,200,500,TimeUnit.MILLISECONDS,blockingQueue);
+	private ThreadPoolExecutor threadhandler = new ThreadPoolExecutor(50,200,5000,TimeUnit.MILLISECONDS,blockingQueue);
 	private long connections;
 	private long serviceTime;
 	
