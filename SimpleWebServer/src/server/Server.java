@@ -127,10 +127,12 @@ public class Server implements Runnable {
 				// Come out of the loop if the stop flag is set
 				if(this.stop)
 					break;
-				
+				if(this.connections<= 200){
 				// Create a handler for this incoming connection and start the handler in a new thread
 				ConnectionHandler handler = new ConnectionHandler(this, connectionSocket);
-				new Thread(handler).start();
+			 handler.
+				new thread(handler).start();
+				}
 			}
 			this.welcomeSocket.close();
 		}
