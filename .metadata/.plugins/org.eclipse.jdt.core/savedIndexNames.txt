@@ -9,6 +9,5 @@ INDEX VERSION 1.126+C:\Users\reynolza\Documents\GitHub\PedzinskiAndReynoldsSimpl
 1789169078.index
 3585733931.index
 3270002986.index
-1076424715.index
 3277441100.index
 3730526690.index
