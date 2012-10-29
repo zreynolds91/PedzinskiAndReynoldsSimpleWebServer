@@ -1,0 +1,14 @@
+Availability tactics:
+1.       Fault Detection: Exception Handling
+3.       Fault Detection: Condition Monitoring done thread executer starts to block if over 200 threads are run simulatiously
+4.       304 exception
+Performance Tactics:
+1.       Scheduling Policies: First in/first out done( the threadexecuter is this by default)
+2.       Manage Resources: Introduce concurrency done ( already implemented and we chose to keep this, expanded on with ThreadPoolExecutor)
+3.       304 exception
+4.       Manage Resources: Bound Queue length or size to prevent overflow done ( threadexecuter)
+Security:
+1.       Detect Intrusion: will be the same as Exception handling
+2.       Limit access: limit memory, network connections same as condition monitoring
+3.       Maintain an audit trail
+        4.    Limiting exposure
